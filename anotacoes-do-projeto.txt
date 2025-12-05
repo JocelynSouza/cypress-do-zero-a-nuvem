@@ -1,0 +1,26 @@
+describe('Central de Atendimento ao Cliente TAT', () => {
+// o describe é uma suite de teste e o it são os casos de teste
+//nessa estrutura temos a primeira instrução em describe seguida de uma função. E temos a segunda instrução que é o IT, segioda de uma função de callback
+  beforeEach(() => {
+    cy.visit ('./src/index.html'); // URL relativa ao diretório onde o Cypress está rodando. 
+    //Esse ./ significa “comece daqui” — ou seja, do diretório atual do projeto.
+    //Esse / sem o ponto assume que existe um servidor web rodando que serve arquivos a partir da raiz (/).
+    //Passar o acesso dessa forma, é uma forma relativa de colocar a URL
+  });
+  it('Verifica o título da aplicação', () => {
+    cy.title().should('be.equal','Central de Atendimento ao Cliente TAT');
+  })
+})
+
+  it('Preenche os campos obrigatórios e envia o formulário', () => {
+    cy.get('#firstName').type('João')
+    cy.get('#lastName').type('Name')
+    cy.get('#email').type('teste@gmail.com')
+    cy.get('#open-text-area').type('Preenchendo os campos obrigatórios')
+    cy.get('button[type="submit"]').click() //peguei a classe buton mas por conta de ser um seletor generico, é melhor passar o stributo type.
+
+    cy.get('.success').should('be.visible')
+
+  });
+
+// COLOCAR DADOS SENSÍVEIS EM UM ARQUIVO QUE SE CHAMA: CYPRESS.ENV.JS (PRECISA CRIAR E DEPOIS COLOCAR NO GITIGNORE)
