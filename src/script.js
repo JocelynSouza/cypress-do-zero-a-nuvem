@@ -34,7 +34,7 @@ document.querySelector('button[type="submit"]')
       return showAndHideErrorMessage()
     }
     if (!emailField.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-      return showAndHideErrorMessage( //colocar o parentese novamente
+      return showAndHideErrorMessage() //quebrei aqui pra testar a falha no workflow ao executar os testes no cypress run
     }
     firstNameField.value = ''
     lastNameField.value = ''
